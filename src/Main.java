@@ -1,3 +1,9 @@
+import abiturient.Abiturients;
+import cats.*;
+import fractions.*;
+import pointss.*;
+import processor.*;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -8,24 +14,32 @@ public class Main {
         System.out.println("ЗАДАНИЕ 1: ДРОБИ\n");
         // 1. Демонстрация дробей
         Fraction f1 = new Fraction(1, 2);
-        Fraction f2 = new Fraction(-3, 4);
+        CachedFraction f2 = new CachedFraction(-3, 4);
         System.out.println("Дроби:");
         System.out.println("f1 = " + f1);
         System.out.println("f2 = " + f2);
+
         // Кэширование
         System.out.println("\nКэширование:");
         System.out.println("Первое значение f1: " + f1.getRealValue());
-        System.out.println("Второе значение f2: " + f2.getRealValue());
+        System.out.println("Первое значение f2: " + f2.getRealValue()); // вычисляет
+        System.out.println("Второе значение f2: " + f2.getRealValue()); // из кеша
+
         // Изменение
-        f1.setNumerator(3);
-        System.out.println("\nПосле изменения: f1 = " + f1);
-        System.out.println("Новое значение: " + f1.getRealValue());
+        f2.setNumerator(3);
+        System.out.println("\nПосле изменения: f2 = " + f2);
+        System.out.println("Новое значение: " + f2.getRealValue());  // вычисляет заново
+        System.out.println("Снова: " + f2.getRealValue());  // из кеша
 
 
         System.out.println("\nЗАДАНИЕ 2: КОТ\n");
-        Cat cat = new Cat("Мурзик");
-        Cat.meowsCare(cat);
-        System.out.println("кот мяукал " + cat.getMeowCount() + " раз");
+        CatCounter countingCat = new CatCounter("Барсик");
+
+        // Вызываем метод meowsCare из класса Cat
+        Cat.meowsCare(countingCat);
+
+        // Получаем количество мяуканий
+        System.out.println("Кот мяукал: " + countingCat.getMeowCount() + " раз");
 
 
         System.out.println("\nЗАДАНИЕ 3: СПИСКИ");
@@ -52,7 +66,7 @@ public class Main {
 
         System.out.println("\n=== ЗАДАНИЕ 4: АБИТУРИЕНТЫ ===");
         try {
-            List<String> failed = AbiturientProcessor.findFailed("abiturients.txt");
+            List<String> failed = Abiturients.findFailed("abiturients.txt");
             System.out.println("Не допущены к экзаменам:");
             if (failed.isEmpty()) {
                 System.out.println("Таких абитуриентов нет");
@@ -105,26 +119,16 @@ public class Main {
 
         System.out.println("=== ЗАДАНИЕ 7: ОБРАБОТКА ТОЧЕК СТРИМОМ ===\n");
 
-        // Создаем список точек
-        List<Point> points = Arrays.asList(
-                new Point(3, 5),
-                new Point(1, 2),
-                new Point(3, 5),
+        List<pointss.Point> points = Arrays.asList(
                 new Point(5, -3),
-                new Point(2, 7),
-                new Point(1, 2),
-                new Point(4, -1)
+                new Point(2, 4),
+                new Point(5, -3),
+                new Point(1, -1)
         );
 
-        System.out.println("Исходные точки:");
-        points.forEach(p -> System.out.print(p + " "));
-        System.out.println("\n");
+        Polyline result = StreamProcessor.processPoints(points);
+        System.out.println("Результат: " + result);
 
-        // Обрабатываем стримом
-        Polyline polyline = StreamProcessor.processPoints(points);
-
-        System.out.println("Результат (ломаная):");
-        System.out.println(polyline);
 
     }
 }

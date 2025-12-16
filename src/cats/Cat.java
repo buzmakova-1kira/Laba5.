@@ -1,23 +1,14 @@
-interface Meowable {
-    void meow();
-}
+package cats;
 
-class Cat implements Meowable {
+public class Cat {
     private String name;
-    private int meowCount = 0;
 
     public Cat(String name) {
         this.name = name;
     }
 
-    @Override
     public void meow() {
-        meowCount++;
         System.out.println(name + ": мяу!");
-    }
-
-    public int getMeowCount() {
-        return meowCount;
     }
 
     @Override
@@ -25,9 +16,9 @@ class Cat implements Meowable {
         return "кот: " + name;
     }
 
-    public static void meowsCare(Meowable m) {
+    public static void meowsCare(Cat cat) {
         for (int i = 0; i < 5; i++) {
-            m.meow();
+            cat.meow();
         }
     }
 }

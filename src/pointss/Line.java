@@ -1,4 +1,6 @@
-class Line {
+package pointss;
+
+public class Line {
     private Point start;
     private Point end;
 

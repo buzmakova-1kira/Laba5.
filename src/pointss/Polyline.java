@@ -1,7 +1,8 @@
+package pointss;
 import java.util.ArrayList;
 import java.util.List;
 
-class Polyline {
+public class Polyline {
     private List<Point> points;
 
     public Polyline() {

@@ -1,6 +1,8 @@
+package processor;
+
 import java.util.*;
 
-class ListProcessor {
+public class ListProcessor {
     public static <T> List<T> createList(List<T> l1, List<T> l2) {
         List<T> result = new ArrayList<>();
 

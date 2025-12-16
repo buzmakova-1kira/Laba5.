@@ -1,3 +1,5 @@
+package abiturient;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -6,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class AbiturientProcessor {
+public class Abiturients {
     public static List<String> findFailed(String filename) throws IOException {
         Map<String, int[]> abiturients = new HashMap<>();
         List<String> failed = new ArrayList<>();
